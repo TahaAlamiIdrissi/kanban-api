@@ -31,7 +31,7 @@ public class TaskServiceImpl implements TaskService {
 		// TODO Auto-generated method stub
 		return this.taskRepository.findAll();
 	}
-
+ 
 	@Override
 	@Transactional(readOnly = true)
 	public Collection<TaskType> findAllTaskTypes() {
@@ -68,7 +68,6 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public Task createTask(Task task) {
 		// TODO Auto-generated method stub
 		Task newTask = taskRepository.save(task);
@@ -76,7 +75,6 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public Task deleteTask(Task task) {
 		// TODO Auto-generated method stub
 		Task existingTask = taskRepository.findById(task.getId()).get();

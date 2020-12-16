@@ -28,4 +28,9 @@ public class Constants {
 	public static final String TASK_TYPES_LABEL_BUG = "BUG";
 	public static final String TASK_TYPES_LABEL_FEATURE = "FEATURE";
 	
+	// Moving Left or right
+	
+	public static final String MOVE_LEFT="LEFT";
+	public static final String MOVE_RIGHT="RIGHT";
+	
 }

@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,7 +37,7 @@ public class Developer {
 	private LocalDate startContract;
 	
 	
-    @JsonIgnore
+    @JsonIgnoreProperties("developers")
 	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "developers")
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude

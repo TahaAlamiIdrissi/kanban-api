@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,7 @@ public class ChangeLog {
 	private Long id;
 	private LocalDateTime occured;
 	@ManyToOne
+	@JsonIgnoreProperties("changeLogs")
 	private Task task;
 	@ManyToOne
 	private TaskStatus targetStatus;

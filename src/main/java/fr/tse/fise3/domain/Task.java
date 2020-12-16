@@ -13,8 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,27 +34,37 @@ public class Task {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotEmpty(message = "please set a value for the title")
 	private String title;
+	@NotNull(message = "please set a value for the nbHoursForecast ")
+	@Min(value = 0,message = "the value should be greater then 0")
+	@Max(value = 144,message = "the value should be less then 144")
 	private Integer nbHoursForecast;
+	
+	@NotNull(message = "please set a value for the nbHoursReal ")
+	@Min(value = 0,message = "the value should be greater then 0")
+	@Max(value = 144,message = "the value should be less then 144")
 	private Integer nbHoursReal;
 	private LocalDate created;
 
 	@ManyToOne
+	@Valid
 	private TaskType type;
 
 	@ManyToOne
+	@Valid
 	private TaskStatus status;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@JsonIgnore
+	@JsonIgnoreProperties("tasks")
 	private Set<Developer> developers;
 
 	@OneToMany(mappedBy = "task", cascade = { CascadeType.ALL }, orphanRemoval = true)
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@JsonIgnore
+	@JsonIgnoreProperties("task")
 	private Set<ChangeLog> changeLogs;
 
 	public Task() {
