@@ -3,6 +3,7 @@ package fr.tse.fise3.controllers;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.tse.fise3.dao.TaskTypeRepository;
@@ -22,8 +24,10 @@ import fr.tse.fise3.utils.TaskMoveAction;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/task/")
+@RequestMapping("/api/v1/task/")
 @AllArgsConstructor
+@CrossOrigin(origins = "*",allowedHeaders = "*",maxAge = 3600,
+methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class TaskController {
 
 	private final TaskService taskService;

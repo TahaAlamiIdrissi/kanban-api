@@ -35,6 +35,7 @@ public class Task {
 	@GeneratedValue
 	private Long id;
 	@NotEmpty(message = "please set a value for the title")
+	@NotNull(message = "please set a value for the title")
 	private String title;
 	@NotNull(message = "please set a value for the nbHoursForecast ")
 	@Min(value = 0,message = "the value should be greater then 0")
@@ -49,16 +50,19 @@ public class Task {
 
 	@ManyToOne
 	@Valid
+	@NotNull(message = "please set a value for the type")
 	private TaskType type;
 
 	@ManyToOne
 	@Valid
+	@NotNull(message = "please set a value for the status")
 	private TaskStatus status;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@JsonIgnoreProperties("tasks")
+	@NotNull(message = "please set a value for the developers")
 	private Set<Developer> developers;
 
 	@OneToMany(mappedBy = "task", cascade = { CascadeType.ALL }, orphanRemoval = true)

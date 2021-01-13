@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -30,9 +32,13 @@ public class Developer {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotEmpty(message = "please set a value for the firstname field")
 	private String firstname;
+	@NotEmpty(message = "please set a value for the lastname field")
 	private String lastname;
+	@NotEmpty(message = "The password is required")
 	private String password;
+	@Email
 	private String email;
 	private LocalDate startContract;
 	
